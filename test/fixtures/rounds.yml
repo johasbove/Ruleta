@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_bet: 1.5
+  spin_result: 1
+  total_payout: 1.5
+
+two:
+  total_bet: 1.5
+  spin_result: 1
+  total_payout: 1.5
