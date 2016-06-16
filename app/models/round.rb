@@ -11,5 +11,8 @@
 #
 
 class Round < ActiveRecord::Base
+  COLORS = ["red", "black", "green"]
+  enum spin_result: COLORS
+
   has_many :bets
 end

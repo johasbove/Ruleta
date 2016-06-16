@@ -13,5 +13,16 @@
 #
 
 class Player < ActiveRecord::Base
+  STATUSES = ["active", "inactive"]
+  enum status: STATUSES
+
   has_many :bets
+  
+  validates :name, presence: true
+
+  private
+
+  def generate_bet
+    
+  end
 end
