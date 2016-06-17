@@ -32,11 +32,10 @@ ActiveRecord::Schema.define(version: 20160616232116) do
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.string   "lastname"
-    t.integer  "age"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.decimal  "money",      default: 10000.0
-    t.integer  "status"
+    t.integer  "status",     default: 0
   end
 
   create_table "rounds", force: :cascade do |t|

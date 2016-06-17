@@ -3,9 +3,9 @@
 # Table name: rounds
 #
 #  id           :integer          not null, primary key
-#  total_bet    :float
+#  total_bet    :decimal(, )
 #  spin_result  :integer
-#  total_payout :float
+#  total_payout :decimal(, )
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
