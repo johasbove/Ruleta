@@ -10,13 +10,17 @@
 #  player_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :integer
 #
 
 class Bet < ActiveRecord::Base
   COLORS = [:red, :black, :green]
+  STATUS = [:acepted, :rejected]
   enum bet_color: COLORS
+  enum status: STATUS
 
   before_save :verify_minimum_amount_restriction
+  before_save :update_player_money, if: :acepted?
 
   belongs_to :round
   belongs_to :player
@@ -28,10 +32,18 @@ class Bet < ActiveRecord::Base
 
   def verify_minimum_amount_restriction
     if self.amount <= 0
-      # NO SE CREA O DICE ALGO Y pone al jugador broke
+      self.player.broke!
+      self.status = "rejected"
+      # POR QUE LO ASIGNA DOS VECES?? ESTO SE ESTA EJECUTANDO DOS VECES?
+      errors[:amount] << "Doesn't achieve the minimum amount"
     end
   end
 
-  # METODO PARA HACER UPDATE DEL DINERO DE JUGADOR AL GUARDAR UNA APUESTA CON PAYOUT
-
+  def update_player_money
+    if self.payout?
+      player = self.player
+      player.money += self.payout
+      player.save
+    end
+  end
 end

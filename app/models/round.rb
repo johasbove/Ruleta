@@ -13,7 +13,6 @@
 class Round < ActiveRecord::Base
   COLORS = [:red, :black, :green]
   enum spin_result: COLORS
-  @message = []
 
   has_many :bets
 
@@ -65,7 +64,7 @@ class Round < ActiveRecord::Base
       if bet.save
         total_payout += bet.payout
       else
-        @message << "Bet with id #{bet.id} couldn't be saved"
+        errors[:base] << "Bet with id #{bet.id} couldn't be saved"
       end
     end
     self.total_payout = total_payout

@@ -14,7 +14,6 @@
 class Player < ActiveRecord::Base
   STATUSES = [:available, :broke, :disabled]
   enum status: STATUSES
-  @message = []
 
   before_save :normalize
 
@@ -33,7 +32,7 @@ class Player < ActiveRecord::Base
     if bet.save
       discount_money(bet.amount)
     else
-      @message << "The bet couldn't be saved"
+      errors[:base] << "The bet couldn't be saved"
     end
   end
 
