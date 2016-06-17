@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 3.minutes do
-  runner "Round.generate_round"
+  runner "Simulator.single_simulation"
 end

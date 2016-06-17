@@ -26,40 +26,37 @@ class Player < ActiveRecord::Base
     [self.name, self.lastname].join(" ")
   end
 
-  def generate_bet round
-    decision = Random.rand(100.0)
-    puts "hhhhhhhhhhhhhhhh"
-    bet = Bet.new(player: self, round: round)
-    puts "bbbbbbbbbbbbbbbb"
-    if decision < 49
-      bet.red!
-    elsif decision < 88
-      bet.black!
-    elsif decision < 100
-      bet.green!
-    end  
-    # case decision
-    #   when 0..49 then bet.red!
-    #   when 49..88 then bet.black!
-    #   when 88..100 then bet.green!
-    # end
-    puts "ccccccccccccccccccccccc"
-    puts bet
-    if self.money > 1000
-      amount_percentage = Random.rand(0.08..0.15)
-      bet.amount = self.money * amount_percentage
-      puts "CASO 1"
-      puts bet
-    elsif self.money > 0
-      bet.amount = self.money
-      puts "CASO 2"
-      puts bet
-    else
-      bet.amount = 0
-      puts "CASO 3"
-      puts bet
-    end
+  def generate_bet bet
+    bet.player = self
+    bet.bet_color = generate_bet_color
+    bet.amount = generate_bet_amount
     bet.save
+  end
+
+  private
+
+  def generate_bet_color
+    color_decision = Random.rand(100.0)
+    case color_decision
+    when 0..49 
+      "red"
+    when 49..88
+      "black"
+    when 88..100 
+      "green"
+    end
+  end
+
+  def generate_bet_amount
+    money = self.money
+    if money > 1000
+      amount_percentage = Random.rand(0.08..0.15)
+      money * amount_percentage
+    elsif money > 0
+      money      
+    else
+      0
+    end
   end
 
   def normalize
