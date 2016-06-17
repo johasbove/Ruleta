@@ -12,9 +12,9 @@
 #
 
 class Player < ActiveRecord::Base
-  # CUANDO UN JUGADOR ESTARIA OCUPADO SI JUEGAN AL MISMO TIEMPO?
   STATUSES = [:available, :broke, :disabled]
   enum status: STATUSES
+  @message = []
 
   before_save :normalize
 
@@ -30,7 +30,11 @@ class Player < ActiveRecord::Base
     bet.player = self
     bet.bet_color = generate_bet_color
     bet.amount = generate_bet_amount
-    bet.save
+    if bet.save
+      discount_money(bet.amount)
+    else
+      @message << "The bet couldn't be saved"
+    end
   end
 
   private
@@ -57,6 +61,11 @@ class Player < ActiveRecord::Base
     else
       0
     end
+  end
+
+  def discount_money amount
+    self.money -= amount
+    self.save
   end
 
   def normalize

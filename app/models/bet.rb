@@ -28,8 +28,10 @@ class Bet < ActiveRecord::Base
 
   def verify_minimum_amount_restriction
     if self.amount <= 0
-      # NO SE CREA O DICE ALGO
+      # NO SE CREA O DICE ALGO Y pone al jugador broke
     end
   end
+
+  # METODO PARA HACER UPDATE DEL DINERO DE JUGADOR AL GUARDAR UNA APUESTA CON PAYOUT
 
 end

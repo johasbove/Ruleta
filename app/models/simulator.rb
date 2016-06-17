@@ -1,6 +1,7 @@
 class Simulator < ActiveRecord::Base
+  @message = []
+  
   def self.single_simulation
-    @message = []
     round = Round.create
     available_players = Player.available
     if available_players.empty?
@@ -8,6 +9,6 @@ class Simulator < ActiveRecord::Base
     else
       round.generate_round(available_players)
     end
-
+    round.calculate_results
   end
 end
