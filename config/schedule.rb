@@ -22,3 +22,7 @@
 every 3.minutes do
   runner "Simulator.single_simulation"
 end
+
+every :day do
+  runner "Simulator.assign_money_players"
+end
