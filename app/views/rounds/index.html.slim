@@ -1,0 +1,43 @@
+- unless @rounds.empty?
+  - t = 0
+  - @rounds.each do |round|
+    .box.box-default.collapsed-box
+      .box-header.with-border
+        #table
+          table.table.table-hover
+            thead
+              tr
+                th #
+                th Total Bet
+                th Spin Result
+                th Total Payout
+            tbody
+              -t += 1
+              tr
+                td = t
+                td = round.total_bet.round(3)
+                td = round.spin_result
+                td = round.total_payout.round(3)
+        .box-tools.pull-right
+          button.btn.btn-box-tool data-widget="collapse"
+            i.fa.fa-plus
+      .box-body
+        #inner-table
+            table.table.table-hover
+              thead
+                tr
+                  th Name
+                  th Last Name
+                  th Bet Amount
+                  th Bet Color
+                  th Payout
+              tbody
+                - bets = round.bets
+                - unless bets.empty?
+                  - bets.each do |bet|
+                    tr
+                      td = bet.player.name
+                      td = bet.player.lastname
+                      td = bet.amount.round(3)
+                      td = bet.bet_color
+                      td = bet.payout.round(3)              
