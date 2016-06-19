@@ -12,7 +12,7 @@ class Simulator
     round.calculate_results
   end
 
-  def self.assign_money_players
+  def self.assign_money_to_players
     Player.where.not(status: 2).update_all("money = money + 1000, status = 0")
   end
 end

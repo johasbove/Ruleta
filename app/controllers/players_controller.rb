@@ -15,18 +15,19 @@ class PlayersController < ApplicationController
     else
       flash.now[:alert] = @player.errors.full_messages.join('<br>- ')
       render :new
+    end
   end
 
   def show
-    @player = Player.find(params[:player_id])
+    @player = Player.find(params[:id])
   end
 
   def edit
-    @player = Player.find(params[:player_id])
+    @player = Player.find(params[:id])
   end
 
   def update
-    @player = Player.find(params[:player_id])
+    @player = Player.find(params[:id])
     if @player.update(player_params)
       redirect_to player_path(@player), notice: 'Player edited! Success!'
     else
@@ -36,7 +37,7 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    @player = Player.find(params[:player_id])
+    @player = Player.find(params[:id])
     if @player.disabled!
       flash[:notice] = 'Player deactivated! Success!'
       redirect_to players_path
