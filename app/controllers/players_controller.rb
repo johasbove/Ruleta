@@ -3,7 +3,8 @@ class PlayersController < ApplicationController
   def index
     @page_header = "Players' List"
     # OJO PAGINACION
-    @players = Player.all
+    # @players = Player.all
+    @players = Player.page(params[:page]).per(5)
   end
 
   def new

@@ -1,4 +1,4 @@
-div#table
+#table
   table.table.table-hover
     thead
       tr
@@ -19,4 +19,5 @@ div#table
             td = link_to "Deactivate", player_path(player), method: :delete, data: {confirm: "Are you sure?"} 
             td = link_to "Activate", player_path(player), method: :post
 
+= paginate @players
 = link_to "Create a Player", new_player_path, class: "btn btn-primary"
