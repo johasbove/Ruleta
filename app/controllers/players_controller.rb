@@ -1,7 +1,9 @@
 class PlayersController < ApplicationController
 
   def index
-    @player = Player.all
+    @page_header = "Players' List"
+    # OJO PAGINACION
+    @players = Player.all
   end
 
   def new
@@ -9,7 +11,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.build(player_params)
+    @player = Player.new(player_params)
     if @player.save
       redirect_to players_path, notice: 'Player created! Success'
     else
@@ -44,6 +46,27 @@ class PlayersController < ApplicationController
     else
       flash[:alert] = @player.errors.full_messages.join('<br>- ')
       redirect_to player_path(@player)
+    end
+  end
+
+  def activate
+    @player = Player.find(params[:id])
+    if @player.money > 0
+      if @player.available!
+        flash[:notice] = 'Player activated! Success!'
+        redirect_to players_path
+      else
+        flash[:alert] = @player.errors.full_messages.join('<br>- ')
+        redirect_to player_path(@player)
+      end
+    else
+      if @player.broke!
+        flash[:notice] = 'Player activated! Success!'
+        redirect_to players_path
+      else
+        flash[:alert] = @player.errors.full_messages.join('<br>- ')
+        redirect_to player_path(@player)
+      end
     end
   end
 

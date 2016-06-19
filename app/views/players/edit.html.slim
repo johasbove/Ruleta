@@ -1,0 +1,9 @@
+div.box
+  div.box-header.with-border
+    h3.box-title Edition of Player
+  div.box-body
+    = simple_form_for @player, defaults: {wrapper_html: {class: "form-group"}} do |player|
+      = player.input :name, required: true, label: 'Name', placeholder: 'Name'
+      = player.input :lastname, label: 'Last Name', placeholder: 'Last Name'
+      = player.input :money, as: :decimal, label: 'Money', placeholder: 'Money'
+      = player.button :submit

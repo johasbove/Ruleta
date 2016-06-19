@@ -1,0 +1,22 @@
+div#table
+  table.table.table-hover
+    thead
+      tr
+        th Name
+        th Last Name
+        th Money
+        th Status
+        th Actions
+    tbody
+      - unless @players.empty?
+        - @players.each do |player|
+          tr
+            td = player.name.titleize
+            td = player.lastname.titleize
+            td = player.money.round(3)
+            td = player.status
+            td = link_to "Show", player_path(player)
+            td = link_to "Deactivate", player_path(player), method: :delete, data: {confirm: "Are you sure?"} 
+            td = link_to "Activate", player_path(player), method: :post
+
+= link_to "Create a Player", new_player_path, class: "btn btn-primary"

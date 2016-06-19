@@ -57,4 +57,5 @@ Rails.application.routes.draw do
   root 'rounds#index'
 
   resources :players
+  post 'players/:id' => 'players#activate'
 end
