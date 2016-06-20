@@ -1,8 +1,5 @@
 # SIMULACION DE RULETA DE CASINO 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
-
 ### Descripción:
 
 Simulación que consiste en un grupo dinámico de personas jugando a la ruleta. El objetivo es crear un sistema para monitorear una mesa de casino.
