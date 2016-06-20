@@ -71,5 +71,10 @@ class Player < ActiveRecord::Base
     self.name.upcase!
     self.lastname.upcase!
   end
+
+  def self.search(search)
+      search.upcase!
+      where(["name LIKE ? OR lastname LIKE ?", "%#{search}%", "%#{search}%"])
+  end
 end
 

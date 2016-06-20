@@ -1,10 +1,14 @@
 class PlayersController < ApplicationController
 
   def index
-    @page_header = "Players' List"
-    # OJO PAGINACION
-    # @players = Player.all
-    @players = Player.page(params[:page]).per(5)
+    if params[:search]
+      @page_header = "Players' Search Result"
+      @players = Player.search(params[:search]).page(params[:page]).per(5)
+      # http://railscasts.com/episodes/37-simple-search-form
+    else
+      @page_header = "Players' List"
+      @players = Player.page(params[:page]).per(5)
+    end
   end
 
   def new
