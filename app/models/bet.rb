@@ -20,7 +20,7 @@ class Bet < ActiveRecord::Base
   enum status: STATUS
 
   before_save :verify_minimum_amount_restriction
-  before_save :update_player_money, if: :acepted?
+  before_save :update_player_money, if: :payout?
 
   belongs_to :round
   belongs_to :player

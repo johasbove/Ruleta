@@ -1,5 +1,4 @@
 - unless @rounds.empty?
-  - t = 0
   - @rounds.each do |round|
     .box.box-default.collapsed-box
       .box-header.with-border
@@ -12,7 +11,6 @@
                 th Spin Result
                 th Total Payout
             tbody
-              -t += 1
               tr
                 td = round.id
                 td = round.total_bet.round(3)
