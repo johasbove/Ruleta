@@ -18,9 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :output, {:error => 'error.log'}
 
-every 1.minutes do
+every 3.minutes do
   runner "Simulator.single_simulation"
 end
 

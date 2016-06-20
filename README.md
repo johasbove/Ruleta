@@ -1,4 +1,4 @@
-== SIMULACION DE RULETA DE CASINO 
+# SIMULACION DE RULETA DE CASINO 
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
@@ -34,3 +34,7 @@ $ whenever --update-crontab
 Puedes listar tus cron jobs instalados usando el comando `crontab -l`.
 
 Corre `whenever --help` para una lista completa de opciones de eleccion del cronograma a usar, seteo de variables en el cronograma, selección del usuario a intalar en crontab, etc. 
+
+### Nota
+
+En caso de querer correr el programa de forma independiente al cronjob, deberás ingresar a la cónsola de rails y correr el comando ```Simulator.single_simulation``` para la simulacion del juego de ruleta y ```Simulator.assign_money_to_players``` para la asignación de $10.000 para cada jugador.

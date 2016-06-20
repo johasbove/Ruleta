@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
   end
 
   def show
+    @page_header = "Player Especifications"
     @player = Player.find(params[:id])
   end
 
